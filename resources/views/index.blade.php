@@ -53,7 +53,7 @@
                 consentButtons[i].addEventListener('click', consentWithCookies);
             }
 
-            const rejectButtons = document.getElementsByClassName('js-cookie-consent-agree');
+            const rejectButtons = document.getElementsByClassName('js-cookie-consent-reject');
 
             for (let i = 0; i < rejectButtons.length; ++i) {
                 rejectButtons[i].addEventListener('click', rejectCookies);
