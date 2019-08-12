@@ -8,4 +8,8 @@
         {{ trans('cookieConsent::texts.agree') }}
     </button>
 
+    <button class="js-cookie-consent-reject cookie-consent__reject">
+        {{ trans('cookieConsent::texts.reject') }}
+    </button>
+
 </div>

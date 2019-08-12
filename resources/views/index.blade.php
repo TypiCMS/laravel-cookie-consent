@@ -1,4 +1,4 @@
-@if($cookieConsentConfig['enabled'] && ! $alreadyConsentedWithCookies)
+@if($cookieConsentConfig['enabled'] && ! $alreadyConsentedWithCookies && ! $rejectedCookies)
 
     @include('cookieConsent::dialogContents')
 
@@ -11,6 +11,11 @@
             function consentWithCookies() {
                 setCookie('{{ $cookieConsentConfig['cookie_name'] }}', 1, {{ $cookieConsentConfig['cookie_lifetime'] }});
                 document.location.reload();
+            }
+
+            function rejectCookies() {
+                setCookie('{{ $cookieConsentConfig['cookie_name'] }}', 0, {{ $cookieConsentConfig['cookie_lifetime'] }});
+                hideCookieDialog();
             }
 
             function cookieExists(name) {
@@ -48,8 +53,15 @@
                 consentButtons[i].addEventListener('click', consentWithCookies);
             }
 
+            const rejectButtons = document.getElementsByClassName('js-cookie-consent-reject');
+
+            for (let i = 0; i < rejectButtons.length; ++i) {
+                rejectButtons[i].addEventListener('click', rejectCookies);
+            }
+
             return {
                 consentWithCookies: consentWithCookies,
+                rejectCookies: rejectCookies,
                 hideCookieDialog: hideCookieDialog
             };
         })();
