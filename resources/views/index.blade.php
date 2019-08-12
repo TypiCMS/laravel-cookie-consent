@@ -15,7 +15,11 @@
             }
 
             function cookieExists(name) {
-                return (document.cookie.split('; ').indexOf(name + '=' + COOKIE_VALUE) !== -1);
+                var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+                if (match === null) {
+                    return false;
+                }
+                return true;
             }
 
             function hideCookieDialog() {
