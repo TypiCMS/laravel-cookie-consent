@@ -9,8 +9,8 @@
             const COOKIE_DOMAIN = '{{ config('session.domain') ?? request()->getHost() }}';
 
             function consentWithCookies() {
-                hideCookieDialog();
                 setCookie('{{ $cookieConsentConfig['cookie_name'] }}', 1, {{ $cookieConsentConfig['cookie_lifetime'] }});
+                document.location.reload();
             }
 
             function cookieExists(name) {
